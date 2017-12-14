@@ -1,0 +1,17 @@
+{
+  "CMTS": [
+        {
+            "name": "CMTS - Brigade 01",
+            "community": "utcmtswr",
+            "hostname": "10.243.224.186",
+            "vendor": "Cisco"
+        },
+        {
+            "name": "CMTS - Brigade 02",
+            "community": "utcmtswr",
+            "hostname": "10.243.224.234",
+            "vendor": "Cisco"
+        }
+  ]
+}
+

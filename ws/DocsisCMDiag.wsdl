@@ -1,0 +1,333 @@
+<definitions name="DocsisCMDiag"
+   targetNamespace="urn:DocsisCMDiag"
+   xmlns="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns="urn:DocsisCMDiag"
+   xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:ns1="http://org.apache.axis2/xsd" 
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   
+
+
+
+<types>
+   <xsd:schema targetNamespace="urn:DocsisCMDiag" attributeFormDefault="qualified" elementFormDefault="qualified">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="wlanArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:wlanItems[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="wlanItems">
+   <xsd:all>
+      <xsd:element name="channel" type="xsd:string" />
+      <xsd:element name="instance" type="xsd:int" />
+      <xsd:element name="security" type="xsd:string" />
+      <xsd:element name="ssid" type="xsd:string" />
+      <xsd:element name="wifi_enabled" type="xsd:string" />
+   </xsd:all>
+   </xsd:complexType>
+
+   <xsd:complexType name="hostArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:hostItems[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="hostItems">
+   <xsd:all>
+      <xsd:element name="MACAddress" type="xsd:string" />
+      <xsd:element name="IPAddress" type="xsd:string" />
+      <xsd:element name="HostName" type="xsd:string" />
+      <xsd:element name="LeaseTimeRemaining" type="xsd:string" />
+      <xsd:element name="Active" type="xsd:string" />
+      <xsd:element name="Interface" type="xsd:string" />
+   </xsd:all>
+   </xsd:complexType>
+
+   <xsd:complexType name="APSArray">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:APSItems[]"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+   </xsd:complexType>
+
+   <xsd:complexType name="APSItems">
+   <xsd:all>
+      <xsd:element name="Valid" type="xsd:string" />
+      <xsd:element name="NetworkName" type="xsd:string" />
+      <xsd:element name="SecurityMode" type="xsd:string" />
+      <xsd:element name="PhyMode" type="xsd:string" />
+      <xsd:element name="Rssi" type="xsd:string" />
+      <xsd:element name="Channel" type="xsd:string" />
+      <xsd:element name="MacAddress" type="xsd:string" />
+      <xsd:element name="ChannelWidth" type="xsd:string" />
+   </xsd:all>
+   </xsd:complexType>
+
+   </xsd:schema>
+</types>
+
+   <message name="getCMTSParamsRequest">
+      <part name="cmMAC" type="xsd:string"/>
+   </message>
+   <message name="getCMTSParamsResponse">
+      <part name="CMTSId" type="xsd:string"/>
+      <part name="CMIP" type="xsd:string"/>
+      <part name="decMAC" type="xsd:string"/>
+      <part name="PTR" type="xsd:int"/>
+      <part name="CMStatus" type="xsd:string"/>
+      <part name="UsInfo" type="xsd:string"/>
+      <part name="primDsInfo" type="xsd:string"/>
+   </message>
+
+   <message name="getCMPropsRequest">
+      <part name="CMIP" type="xsd:string"/>
+      <part name="cmCommunity" type="xsd:string"/>
+   </message>
+   <message name="getCMPropsResponse">
+      <part name="Model" type="xsd:string"/>
+      <part name="Description" type="xsd:string"/>
+      <part name="Vendor" type="xsd:string"/>
+      <part name="Firmware" type="xsd:string"/>
+      <part name="Uptime" type="xsd:string"/>
+   </message>
+
+   <message name="getCMDsValsRequest">
+      <part name="CMIP" type="xsd:string"/>
+      <part name="cmCommunity" type="xsd:string"/>
+   </message>
+   <message name="getCMDsValsResponse">
+      <part name="DsVals" type="xsd:string"/>
+   </message>
+
+   <message name="getUSDetailRequest">
+      <part name="CMTSId" type="xsd:string"/>
+      <part name="PTR" type="xsd:string"/>
+   </message>
+   <message name="getUSDetailResponse">
+      <part name="UsVals" type="xsd:string"/>
+   </message>
+
+
+   <message name="getCMUsValsRequest">
+      <part name="CMIP" type="xsd:string"/>
+      <part name="cmCommunity" type="xsd:string"/>
+   </message>
+   <message name="getCMUsValsResponse">
+      <part name="UsVals" type="xsd:string"/>
+   </message>
+
+   <message name="getCMFDBRequest">
+      <part name="CMIP" type="xsd:string"/>
+      <part name="CMTSId" type="xsd:string"/>
+      <part name="cmCommunity" type="xsd:string"/>
+   </message>
+   <message name="getCMFDBResponse">
+      <part name="FDBRecords" type="xsd:string"/>
+   </message>
+
+   <message name="getDeviceIPRequest">
+      <part name="MAC" type="xsd:string"/>
+   </message>
+   <message name="getDeviceIPResponse">
+      <part name="deviceIP" type="xsd:string"/>
+      <part name="parentDeviceMAC" type="xsd:string"/>
+   </message>
+
+   <message name="getWANRequest">
+      <part name="MAC" type="xsd:string"/>
+      <part name="CMTSId" type="xsd:string"/>
+      <part name="cmCommunity" type="xsd:string"/>
+      <part name="CMIP" type="xsd:string"/>
+   </message>
+   
+   <message name="getWANResponse">
+      <part name="ip_address" type="xsd:string"/>
+      <part name="subnet_mask" type="xsd:string"/>
+      <part name="gateway" type="xsd:string"/>
+      <part name="uptime" type="xsd:string"/>
+   </message>
+   
+   
+   <portType name="DocsisCMDiag">
+      <operation name="getCMTSParams">
+         <documentation>Returns the values gathered from CMTS based on .yaml file of the CMTSes and MAC address of the cable modem</documentation>
+         <input message="tns:getCMTSParamsRequest"/>
+         <output message="tns:getCMTSParamsResponse"/>
+      </operation>
+      <operation name="getCMProps">
+         <input message="tns:getCMPropsRequest"/>
+         <output message="tns:getCMPropsResponse"/>
+      </operation>
+      <operation name="getCMDsVals">
+         <input message="tns:getCMDsValsRequest"/>
+         <output message="tns:getCMDsValsResponse"/>
+      </operation>
+      <operation name="getCMUsVals">
+         <input message="tns:getCMUsValsRequest"/>
+         <output message="tns:getCMUsValsResponse"/>
+      </operation>
+      <operation name="getUSDetail">
+         <input message="tns:getUSDetailRequest"/>
+         <output message="tns:getUSDetailResponse"/>
+      </operation>
+      <operation name="getCMFDBRecords">
+         <input message="tns:getCMFDBRequest"/>
+         <output message="tns:getCMFDBResponse"/>
+      </operation>
+      <operation name="getDeviceIP">
+         <input message="tns:getDeviceIPRequest"/>
+         <output message="tns:getDeviceIPResponse"/>
+      </operation>
+      <operation name="getWAN">
+         <input message="tns:getWANRequest"/>
+         <output message="tns:getWANResponse"/>
+      </operation>
+   </portType>
+
+
+   <binding name="DocsisCMDiag" type="tns:DocsisCMDiag">
+   <soap:binding style="rpc"
+      transport="http://schemas.xmlsoap.org/soap/http"/>
+   <operation name="getCMTSParams">
+      <soap:operation soapAction="getCMTSParams"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   <operation name="getCMProps">
+      <soap:operation soapAction="getCMProps"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   <operation name="getCMDsVals">
+      <soap:operation soapAction="getCMDsVals"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   <operation name="getUSDetail">
+      <soap:operation soapAction="getUSDetail"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+
+   <operation name="getCMUsVals">
+      <soap:operation soapAction="getCMUsVals"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   <operation name="getCMFDBRecords">
+      <soap:operation soapAction="getCMFDBRecords"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   <operation name="getDeviceIP">
+      <soap:operation soapAction="getDeviceIP"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   <operation name="getWAN">
+      <soap:operation soapAction="getWAN"/>
+      <input>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </input>
+      <output>
+         <soap:body
+            encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+            namespace="urn:examples:docsisCmDiag"
+            use="encoded"/>
+      </output>
+   </operation>
+   </binding>
+
+   <service name="DocsisCMDiag">
+      <documentation>WSDL File for HelloService</documentation>
+      <port binding="tns:DocsisCMDiag" name="DocsisCMDiag">
+         <soap:address location="http://modemdiag.cmtsnet.local/docsisWs.php"/>
+      </port>
+   </service>
+</definitions>
+
+
