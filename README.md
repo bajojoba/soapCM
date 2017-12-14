@@ -48,6 +48,8 @@ PHP script to gather Docsis Cable Modem information via SNMP. Easy to connect to
 ``` sh
     Search for modemdiag.cmtsnet.local and replase it with your apache server hostname/ip
 ```
+# Test
+Download SoapUI. Add a new project: http://your.apache.hostname/ws/DocsisCMDiag.wsdl
 # Todo
 It's written very long time a go for php5.3 so the best thing would be to port it to python or at least new version of PHP7.
 - cablemodem reset
